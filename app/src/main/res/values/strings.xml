@@ -91,8 +91,6 @@
     <string name="critical_error">Critical error</string>
     <string name="critical_error_description">Will notify you when a critical error occurs and new pairing is required</string>
     <string name="critical_error_occurred">A critical error occurred. A new pairing is required.</string>
-    <string name="alert_ringtone">Alert ringtone</string>
-    <string name="alert_ringtone_summary">Ringtone used for pump alerts</string>
     <string name="advanced_settings">Advanced settings</string>
     <string name="disconnection_delay">Disconnection delay [ms]</string>
     <string name="disconnection_delay_summary">The time to wait before closing the connection, the minimum value is 1000 milliseconds.</string>
@@ -106,10 +104,6 @@
     <string name="allow_socket_resets_summary">Allow resetting the bluetooth socket to improve connection stability on some devices</string>
     <string name="attempts_per_socket">Attempts per socket</string>
     <string name="attempts_per_socket_summary">Try to connect n times with the same socket before it will be discarded</string>
-    <string name="allow_adapter_resets">Allow adapter resets</string>
-    <string name="allow_adapter_resets_summary">Allow to re-enable the bluetooth adapter to improve connection stability on some devices</string>
-    <string name="attempts_per_bluetooth_session">Attempts per bluetooth session</string>
-    <string name="attempts_per_bluetooth_session_summary">Attempts to take before the bluetooth adapter will be re-enabled</string>
     <string name="settings">Settings</string>
     <string name="delete_pairing">Delete pairing</string>
     <string name="delete_pairing_dialog_title">Delete pairing?</string>
