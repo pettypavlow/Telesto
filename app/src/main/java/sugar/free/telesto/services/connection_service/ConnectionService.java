@@ -626,9 +626,19 @@ public class ConnectionService extends Service implements SocketHolder.Callback 
         } catch (Exception e) {
             if (getState() != TelestoState.CONNECTED) handleConnectionRelatedException(e, true);
             else {
-                e.printStackTrace();
                 Log.d("ConnectionService", "Got exception while processing request: " + e.getClass().getCanonicalName());
-                completeActiveRequest(e);
+                synchronized (messageRequests) {
+                    if (disconnectAfterMessage) {
+                        synchronized (activeRequest) {
+                            activeRequest.exception = e;
+                            activeRequest.notifyAll();
+                            activeRequest = null;
+                        }
+                        setState(TelestoState.APP_DISCONNECT_MESSAGE);
+                        completeAllRequests(new AboutToDisconnectException());
+                        sendAppLayerMessage(new DisconnectMessage());
+                    } else completeActiveRequest(e);
+                }
             }
         }
     }
@@ -655,6 +665,7 @@ public class ConnectionService extends Service implements SocketHolder.Callback 
             handleConnectionRelatedException(new ReceivedPacketInInvalidStateException(), false);
             return;
         }
+        activatedServices.clear();
         if (!disconnectAfterMessage) {
             setState(TelestoState.APP_CONNECT_MESSAGE);
             sendAppLayerMessage(new ConnectMessage());
@@ -664,23 +675,44 @@ public class ConnectionService extends Service implements SocketHolder.Callback 
     private void processActivateServiceMessage() {
         synchronized (messageRequests) {
             activatedServices.add(activeRequest.request.getService());
-            sendAppLayerMessage(activeRequest.request);
+            if (disconnectAfterMessage) {
+                setState(TelestoState.APP_DISCONNECT_MESSAGE);
+                completeAllRequests(new AboutToDisconnectException());
+                sendAppLayerMessage(new DisconnectMessage());
+            } else sendAppLayerMessage(activeRequest.request);
         }
     }
 
     private void processServiceChallengeMessage(ServiceChallengeMessage serviceChallengeMessage) {
         synchronized (messageRequests) {
-            sugar.free.telesto.parser.app_layer.Service service = activeRequest.request.getService();
-            ActivateServiceMessage activateServiceMessage = new ActivateServiceMessage();
-            activateServiceMessage.setServiceID(ServiceIDs.IDS.getB(service));
-            activateServiceMessage.setVersion(service.getVersion());
-            activateServiceMessage.setServicePassword(Cryptograph.getServicePasswordHash(service.getServicePassword(), serviceChallengeMessage.getRandomData()));
-            sendAppLayerMessage(activateServiceMessage);
+            if (disconnectAfterMessage) {
+                setState(TelestoState.APP_DISCONNECT_MESSAGE);
+                completeAllRequests(new AboutToDisconnectException());
+                sendAppLayerMessage(new DisconnectMessage());
+            } else {
+                sugar.free.telesto.parser.app_layer.Service service = activeRequest.request.getService();
+                ActivateServiceMessage activateServiceMessage = new ActivateServiceMessage();
+                activateServiceMessage.setServiceID(ServiceIDs.IDS.getB(service));
+                activateServiceMessage.setVersion(service.getVersion());
+                activateServiceMessage.setServicePassword(Cryptograph.getServicePasswordHash(service.getServicePassword(), serviceChallengeMessage.getRandomData()));
+                sendAppLayerMessage(activateServiceMessage);
+            }
         }
     }
 
     private synchronized void processGenericAppLayerMessage(AppLayerMessage appLayerMessage) {
-        completeActiveRequest(appLayerMessage);
+        synchronized (messageRequests) {
+            if (disconnectAfterMessage) {
+                synchronized (activeRequest) {
+                    activeRequest.response = appLayerMessage;
+                    activeRequest.notifyAll();
+                    activeRequest = null;
+                }
+                setState(TelestoState.APP_DISCONNECT_MESSAGE);
+                completeAllRequests(new AboutToDisconnectException());
+                sendAppLayerMessage(new DisconnectMessage());
+            } else completeActiveRequest(appLayerMessage);
+        }
     }
 
     private void processErrorMessage(ErrorMessage errorMessage) {
