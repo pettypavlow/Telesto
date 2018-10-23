@@ -51,7 +51,7 @@
     <string name="do_you_really_want_to_start_your_pump"><![CDATA[Do you really want to <b>start</b> your pump?]]></string>
     <string name="cancel_tbr">Cancel TBR?</string>
     <string name="cancel_bolus">Cancel bolus?</string>
-    <string name="do_you_really_want_to_cancel_this_bolus"><![CDATA[Do you really want to <b>cancel this bolus</b>?]]></string>
+    <string name="do_you_really_want_to_cancel_this_bolus"><![CDATA[Do you really want to <b>cancel</b> this <b>bolus</b>?]]></string>
     <string name="standard_bolus">Standard bolus</string>
     <string name="extended_bolus">Extended bolus</string>
     <string name="multiwave_bolus">Multiwave bolus</string>
@@ -59,8 +59,8 @@
     <string name="extended_amount">Extended amount</string>
     <string name="duration">Duration</string>
     <string name="bolus">Bolus</string>
-    <string name="the_minimum_amount_is">The minimum amount is %1$.2f U</string>
-    <string name="the_maximum_amount_is">The maximum amount is %1$.2f U</string>
+    <string name="the_minimum_amount_is">The minimum amount is %1$.2f U.</string>
+    <string name="the_maximum_amount_is">The maximum amount is %1$.2f U.</string>
     <string name="deliver">Deliver</string>
     <string name="the_duration_must_be_entered_in_format">The duration must be entered in format 00:00.</string>
     <string name="the_step_size_is_15_minutes">The step size is 15 minutes.</string>
