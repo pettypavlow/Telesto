@@ -1,0 +1,17 @@
+files:
+  - source: /app/src/main/res/values/strings.xml
+    translation: /app/src/main/res/values-%two_letters_code%/strings.xml
+    translate_attributes: 0
+    content_segmentation: 0
+  - source: /app/src/main/res/values/alert_codes.xml
+    translation: /app/src/main/res/values-%two_letters_code%/alert_codes.xml
+    translate_attributes: 0
+    content_segmentation: 0
+  - source: /app/src/main/res/values/alert_titles.xml
+    translation: /app/src/main/res/values-%two_letters_code%/alert_titles.xml
+    translate_attributes: 0
+    content_segmentation: 0
+  - source: /app/src/main/res/values/alert_descriptions.xml
+    translation: /app/src/main/res/values-%two_letters_code%/alert_descriptions.xml
+    translate_attributes: 0
+    content_segmentation: 0
