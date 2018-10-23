@@ -2,7 +2,7 @@
 <resources>
     <string name="alert_r7_description"><![CDATA[Amount: <b>%1$d%%</b>\nDuration: <b>%2$s h</b>]]></string>
 
-    <string name="alert_w31_description"><![CDATA[Cartridge content: <b>%1$s U</b>]]>></string>
+    <string name="alert_w31_description"><![CDATA[Cartridge content: <b>%1$s U</b>]]></string>
     <string name="alert_w32_description">Change battery.</string>
     <string name="alert_w33_description">Set time/date.</string>
     <string name="alert_w34_description">Contact Accu-Chek support.</string>
