@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    defaultConfig {
+        applicationId "sugar.free.telesto"
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
+        versionCode project.versionCode
+        versionName project.versionName
+        vectorDrawables.useSupportLibrary = true
+        buildConfigField 'int', 'COMPATIBILITY_VERSION', project.versionCompatiblity
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation project(path: ':descriptors')
+    implementation project(path: ':database')
+    implementation project(path: ':connector')
+    implementation project(path: ':parser')
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.preference:preference:1.0.0'
+
+    //Livecycle + ViewModel + LiveData
+    def lifecycle_version = "2.0.0";
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    //Paging
+    implementation "androidx.paging:paging-runtime:2.0.0-rc01"
+
+    //SpongyCastle
+    implementation 'com.madgag.spongycastle:core:1.58.0.0'
+
+    //Room
+    def room_version = "2.0.0-rc01"
+    implementation "androidx.room:room-runtime:$room_version"
+}

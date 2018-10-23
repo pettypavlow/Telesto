@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="sugar.free.telesto">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <application
+        android:name=".TelestoApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/TelestoTheme">
+        <service android:name=".services.connection_service.ConnectionService" />
+        <service android:name=".services.StatusService" />
+        <service android:name=".services.NotificationService" />
+        <service android:name=".services.HistoryService" />
+        <service android:name=".services.AlertService" />
+        <service
+            android:name=".services.OrbitalService"
+            android:exported="true" />
+
+        <activity android:name=".activities.LauncherActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.SetupActivity"
+            android:label="@string/setup" />
+        <activity
+            android:name=".activities.StatusActivity"
+            android:label="@string/status" />
+        <activity
+            android:name=".activities.boluses.StandardBolusActivity"
+            android:label="@string/standard_bolus" />
+        <activity
+            android:name=".activities.boluses.ExtendedBolusActivity"
+            android:label="@string/extended_bolus" />
+        <activity
+            android:name=".activities.boluses.MultiwaveBolusActivity"
+            android:label="@string/multiwave_bolus" />
+        <activity
+            android:name=".activities.TBRActivity"
+            android:label="@string/tbr" />
+        <activity
+            android:name=".activities.AlertActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/pump_alert"
+            android:theme="@style/AlertActivityStyle" />
+        <activity
+            android:name=".activities.PreferencesActivity"
+            android:label="@string/settings" />
+    </application>
+
+</manifest>

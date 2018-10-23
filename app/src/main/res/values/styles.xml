@@ -1,0 +1,143 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="TelestoTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimary</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorAccent">@color/colorSecondary</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="textAppearanceHeadline1">@style/Headline1Style</item>
+        <item name="textAppearanceHeadline2">@style/Headline2Style</item>
+        <item name="textAppearanceHeadline3">@style/Headline3Style</item>
+        <item name="textAppearanceHeadline4">@style/Headline4Style</item>
+        <item name="textAppearanceHeadline5">@style/Headline5Style</item>
+        <item name="textAppearanceHeadline6">@style/Headline6Style</item>
+        <item name="textAppearanceSubtitle1">@style/Subtitle1Style</item>
+        <item name="textAppearanceSubtitle2">@style/Subtitle2Style</item>
+        <item name="textAppearanceBody1">@style/Body1Style</item>
+        <item name="textAppearanceBody2">@style/Body2Style</item>
+        <item name="textAppearanceCaption">@style/CaptionStyle</item>
+        <item name="textAppearanceOverline">@style/OverlineStyle</item>
+        <item name="alertDialogTheme">@style/AlertDialogStyle</item>
+        <item name="dialogTheme">@style/DialogStyle</item>
+        <item name="android:windowActivityTransitions" tools:targetApi="lollipop">true</item>
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_in</item>
+        <item name="textInputStyle">@style/TextInputLayout</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+    </style>
+
+    <style name="Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorButtonBackground</item>
+    </style>
+
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    </style>
+
+    <style name="TextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/control_color_selector</item>
+    </style>
+
+    <style name="AlertDialogStyle" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:windowTitleStyle">@style/DialogTitleStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/TextButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/TextButtonStyle</item>
+        <item name="buttonBarNeutralButtonStyle">@style/TextButtonStyle</item>
+    </style>
+
+    <style name="DialogStyle" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:theme">@style/TelestoTheme</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:windowTitleStyle">@style/DialogTitleStyle</item>
+    </style>
+
+    <style name="DialogTitleStyle" parent="RtlOverlay.DialogWindowTitle.AppCompat">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="AlertActivityStyle" parent="Theme.MaterialComponents.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:windowTitleStyle">@style/DialogTitleStyle</item>
+        <item name="android:windowMinWidthMajor">96%</item>
+        <item name="android:windowMinWidthMinor">96%</item>
+    </style>
+
+    <style name="Headline1Style" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="Headline2Style" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="Headline3Style" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="Headline4Style" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="Headline5Style" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="Headline6Style" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="Subtitle1Style" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="Subtitle2Style" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="Body1Style" parent="TextAppearance.MaterialComponents.Body1">
+    </style>
+
+    <style name="Body2Style" parent="TextAppearance.MaterialComponents.Body2">
+    </style>
+
+    <style name="CaptionStyle" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">#CCFFFFFF</item>
+    </style>
+
+    <style name="OverlineStyle" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textColor">#CCFFFFFF</item>
+    </style>
+
+    <style name="CardStyle">
+        <item name="android:background">@drawable/card_background</item>
+        <item name="android:elevation" tools:targetApi="lollipop">4dp</item>
+    </style>
+
+    <style name="ValueStyle">
+        <item name="fontFamily">@font/roboto_slab</item>
+        <item name="android:fontFamily">@font/roboto_slab</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">0.009375</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="ValueStyleSmall" parent="ValueStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="ValueStyleBig" parent="ValueStyle">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+</resources>

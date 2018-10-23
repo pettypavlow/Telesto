@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<RingtonePreference
+        android:key="alertRingtone"
+        android:showDefault="true"
+        android:showSilent="false"
+        android:summary="@string/alert_ringtone"
+        android:title="@string/alert_ringtone_summary" />-->
+
+    <PreferenceCategory android:title="@string/advanced_settings">
+        <EditTextPreference
+            android:defaultValue="10000"
+            android:key="disconnectionDelay"
+            android:numeric="integer"
+            android:summary="@string/disconnection_delay_summary"
+            android:title="@string/disconnection_delay" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="waitBeforeRetry"
+            android:summary="@string/wait_before_retry_summary"
+            android:title="@string/wait_before_retry_title" />
+        <EditTextPreference
+            android:defaultValue="20000"
+            android:dependency="waitBeforeRetry"
+            android:key="maxWaitingTime"
+            android:numeric="integer"
+            android:summary="@string/maximum_waiting_time_summary"
+            android:title="@string/maximum_waiting_time" />
+        <EditTextPreference
+            android:defaultValue="4000"
+            android:dependency="waitBeforeRetry"
+            android:key="minWaitingTime"
+            android:numeric="integer"
+            android:summary="@string/minimum_waiting_time_summary"
+            android:title="@string/minimum_waiting_time" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="allowSocketResets"
+            android:summary="@string/allow_socket_resets_summary"
+            android:title="@string/allow_socket_resets" />
+        <EditTextPreference
+            android:defaultValue="10"
+            android:dependency="allowSocketResets"
+            android:key="maxSocketAttempts"
+            android:numeric="integer"
+            android:summary="@string/attempts_per_socket_summary"
+            android:title="@string/attempts_per_socket" />
+    </PreferenceCategory>
+
+    <Preference
+        android:icon="@drawable/ic_delete"
+        android:key="deletePairing"
+        android:title="@string/delete_pairing" />
+</PreferenceScreen>

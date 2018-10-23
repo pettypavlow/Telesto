@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="false"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:contentInsetStart="16dp"
+            app:titleTextAppearance="?attr/textAppearanceHeadline6" />
+
+        <TextView
+            android:id="@+id/connection_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textSize="16sp"
+            tools:text="Connecting..." />
+
+        <TextView
+            android:id="@+id/status_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textSize="16sp"
+            tools:text="5 minutes ago" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <sugar.free.telesto.views.TwoColumnLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/operating_mode_container"
+                    style="@style/CardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:background="@drawable/card_error_transition"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/operating_mode"
+                        android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                    <TextView
+                        android:id="@+id/operating_mode_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/ValueStyleBig"
+                        tools:text="@string/started" />
+
+                    <Button
+                        android:id="@+id/operating_mode_button"
+                        style="@style/TextButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="operatingModeButtonClicked"
+                        tools:text="@string/start" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cartridge_status_container"
+                    style="@style/CardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:background="@drawable/card_error_transition"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cartridge"
+                        android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                    <TextView
+                        android:id="@+id/cartridge_status_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/ValueStyleBig"
+                        tools:text="100 U" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/active_bolus_1_container"
+                    style="@style/CardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/active_bolus"
+                        android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                    <TextView
+                        android:id="@+id/active_bolus_1_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/ValueStyleBig"
+                        tools:text="5,4 U / 6 U" />
+
+                    <TextView
+                        android:id="@+id/active_bolus_1_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/ValueStyleSmall"
+                        tools:text="0:21 h" />
+
+                    <ProgressBar
+                        android:id="@+id/active_bolus_1_progress_bar"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:max="60"
+                        tools:progress="54" />
+
+                    <Button
+                        android:id="@+id/active_bolus_1_cancel"
+                        style="@style/TextButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="cancelBolus1Clicked"
+                        android:text="@string/cancel" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/active_bolus_2_container"
+                    style="@style/CardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/active_bolus"
+                        android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                    <TextView
+                        android:id="@+id/active_bolus_2_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/ValueStyleBig"
+                        tools:text="5,4 U / 6 U" />
+
+                    <TextView
+                        android:id="@+id/active_bolus_2_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/ValueStyleSmall"
+                        tools:text="0:21 h" />
+
+                    <ProgressBar
+                        android:id="@+id/active_bolus_2_progress_bar"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:max="60"
+                        tools:progress="54" />
+
+                    <Button
+                        android:id="@+id/active_bolus_2_cancel"
+                        style="@style/TextButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="cancelBolus2Clicked"
+                        android:text="@string/cancel" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/active_bolus_3_container"
+                    style="@style/CardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/active_bolus"
+                        android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                    <TextView
+                        android:id="@+id/active_bolus_3_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/ValueStyleBig"
+                        tools:text="5,4 U / 6 U" />
+
+                    <TextView
+                        android:id="@+id/active_bolus_3_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/ValueStyleSmall"
+                        tools:text="0:21 h" />
+
+                    <ProgressBar
+                        android:id="@+id/active_bolus_3_progress_bar"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:max="60"
+                        tools:progress="54" />
+
+                    <Button
+                        android:id="@+id/active_bolus_3_cancel"
+                        style="@style/TextButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="cancelBolus3Clicked"
+                        android:text="@string/cancel" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/active_tbr_container"
+                    style="@style/CardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/active_tbr"
+                        android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                    <TextView
+                        android:id="@+id/active_tbr_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/ValueStyleBig"
+                        tools:text="120 %" />
+
+                    <TextView
+                        android:id="@+id/active_tbr_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/ValueStyleSmall"
+                        tools:text="0:45 h / 1:30 h" />
+
+                    <ProgressBar
+                        android:id="@+id/active_tbr_progress_bar"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:max="105"
+                        tools:progress="45" />
+
+                    <Button
+                        android:id="@+id/active_tbr_cancel"
+                        style="@style/TextButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="cancelTBRClicked"
+                        android:text="@string/cancel" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/active_basal_rate_container"
+                    style="@style/CardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/basal_rate"
+                        android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                    <TextView
+                        android:id="@+id/active_basal_rate_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/ValueStyleBig"
+                        tools:text="1.25 U/h" />
+
+                    <TextView
+                        android:id="@+id/active_basal_rate_original_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.5"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/ValueStyleSmall"
+                        tools:text="1.04 U/h" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/battery_status_container"
+                    style="@style/CardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/battery"
+                        android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                    <TextView
+                        android:id="@+id/battery_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/ValueStyleBig"
+                        tools:text="90 %" />
+                </LinearLayout>
+            </sugar.free.telesto.views.TwoColumnLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@color/navigation_drawer_color"
+        app:itemTextColor="@color/navigation_drawer_color"
+        app:menu="@menu/navigation_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>
